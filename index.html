@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PaginaHalo - Aprendiendo HTML, CSS y JavaScript</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* Footer: hover en redes sociales */
+    .site-footer .social a {
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+    .site-footer .social a:hover {
+      transform: scale(1.2);
+      filter: brightness(1.3);
+    }
+
+    /* Animaciones fade-in para tarjetas y thumbnails */
+    .card, .video-card, .thumb {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.6s forwards;
+    }
+    .card:nth-child(1){ animation-delay: 0.1s; }
+    .card:nth-child(2){ animation-delay: 0.2s; }
+    .card:nth-child(3){ animation-delay: 0.3s; }
+    .card:nth-child(4){ animation-delay: 0.4s; }
+    .video-card:nth-child(1){ animation-delay: 0.1s; }
+    .video-card:nth-child(2){ animation-delay: 0.2s; }
+    .video-card:nth-child(3){ animation-delay: 0.3s; }
+    .thumb:nth-child(1){ animation-delay: 0.1s; }
+    .thumb:nth-child(2){ animation-delay: 0.2s; }
+    .thumb:nth-child(3){ animation-delay: 0.3s; }
+    .thumb:nth-child(4){ animation-delay: 0.4s; }
+    .thumb:nth-child(5){ animation-delay: 0.5s; }
+    .thumb:nth-child(6){ animation-delay: 0.6s; }
+    @keyframes fadeInUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Botones con animación hover */
+    .btn {
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+    .btn:hover {
+      transform: scale(1.05);
+      background-color: #15b357;
+    }
+
+    /* Mensaje de formulario */
+    #formResult {
+      margin-top: 0.5rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <h1 class="logo">Halo curiosidades</h1>
+    <nav class="main-nav" id="mainNav">
+      <button class="nav-toggle" id="navToggle" aria-expanded="false">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </button>
+      <ul class="nav-list">
+        <li><a href="#home" class="nav-link">Inicio</a></li>
+        <li><a href="#characters" class="nav-link">Personajes</a></li>
+        <li><a href="#gallery" class="nav-link">Galería</a></li>
+        <li><a href="#contact" class="nav-link">Contacto</a></li>
+        <li><a href="#noticias" class="nav-link">Noticias</a></li>
+        <li><a href="#credits" class="nav-link">Acerca de</a></li>
+      </ul>
+    </nav>
+    <button id="themeBtn" class="theme-btn" title="Cambiar tema">🌙</button>
+  </div>
+</header>
+
+<main>
+  <section id="home" class="hero container">
+    <h2>Bienvenidos a Halo curiosidades</h2>
+    <p>Este sitio sirve para que los estudiantes evalúen la integración de <strong>HTML</strong>, <strong>CSS</strong> y <strong>JavaScript</strong>.</p>
+    <div class="quick-actions">
+      <button id="showHint" class="btn">Ver pista (JS)</button>
+      <button onclick="document.querySelector('#gallery').scrollIntoView({behavior:'smooth'})" class="btn">Ir a Galería</button>
+    </div>
+  </section>
+
+  <section id="characters" class="container cards">
+    <h3>Personajes destacados</h3>
+    <div class="card-grid">
+      <article class="card">
+        <div class="avatar avatar-1" aria-hidden="true"></div>
+        <h4>Master Chief</h4>
+        <p>Spartan-II legendario, símbolo de la UNSC. Designación: John-117.</p>
+        <button class="btn btn-outline" onclick="showProfile('Master Chief')">Ver Perfil</button>
+      </article>
+      <article class="card">
+        <div class="avatar avatar-2" aria-hidden="true"></div>
+        <h4>Cortana</h4>
+        <p>IA avanzada creada a partir del cerebro de la Dra. Halsey. Aliada del Jefe.</p>
+        <button class="btn btn-outline" onclick="showProfile('Cortana')">Ver Perfil</button>
+      </article>
+      <article class="card">
+        <div class="avatar avatar-3" aria-hidden="true"></div>
+        <h4>Sargento Johnson</h4>
+        <p>Veterano de la UNSC. Entrenador Spartan y héroe de la guerra contra el Covenant.</p>
+        <button class="btn btn-outline" onclick="showProfile('Johnson')">Ver Perfil</button>
+      </article>
+      <article class="card">
+        <div class="avatar avatar-4" aria-hidden="true"></div>
+        <h4>Noble Six</h4>
+        <p>Spartan-III del Equipo Noble. Silencioso, letal y sacrificado en la defensa de Reach.</p>
+        <button class="btn btn-outline" onclick="showProfile('Noble Six')">Ver Perfil</button>
+      </article>
+    </div>
+  </section>
+
+  <section id="gallery" class="container">
+    <h3>Galería</h3>
+    <p>Haz click en cualquier "tarjeta" para abrir una vista más grande.</p>
+    <div class="gallery-grid">
+      <figure class="thumb" onclick="openLightbox('assets/halo-zi5sefjprv41opvt.jpg')">
+        <img src="assets/halo-zi5sefjprv41opvt.jpg" alt="Ilustración 1" />
+        <figcaption>Ilustración 1</figcaption>
+      </figure>
+      <figure class="thumb" onclick="openLightbox('assets/imagen2.jpg')">
+        <img src="assets/imagen2.jpg" alt="Ilustración 2" />
+        <figcaption>Ilustración 2</figcaption>
+      </figure>
+      <figure class="thumb" onclick="openLightbox('assets/imagen3.jpeg')">
+        <img src="assets/imagen3.jpeg" alt="Ilustración 3" />
+        <figcaption>Ilustración 3</figcaption>
+      </figure>
+      <figure class="thumb" onclick="openLightbox('assets/images4.jpeg')">
+        <img src="assets/images4.jpeg" alt="Ilustración 4" />
+        <figcaption>Ilustración 4</figcaption>
+      </figure>
+      <figure class="thumb" onclick="openLightbox('assets/imagen5.jpeg')">
+        <img src="assets/imagen5.jpeg" alt="Ilustración 5" />
+        <figcaption>Ilustración 5</figcaption>
+      </figure>
+      <figure class="thumb" onclick="openLightbox('assets/imagen6.jpj.jpg')">
+        <img src="assets/imagen6.jpj.jpg" alt="Ilustración 6" />
+        <figcaption>Ilustración 6</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="noticias" class="container">
+    <h3>NOTICIAS</h3>
+    <div class="video-grid">
+      <div class="video-card" onclick="openVideoModal('ZAoBItZJ1mQ')">
+        <img src="https://img.youtube.com/vi/ZAoBItZJ1mQ/hqdefault.jpg" alt="">
+        <h4>El fin Halo Infinite?</h4>
+        <p>La última gran actualización de contenido para Halo Infinite</p>
+      </div>
+      <div class="video-card" onclick="openVideoModal('RkbttOZEjEU')">
+        <img src="https://img.youtube.com/vi/RkbttOZEjEU/hqdefault.jpg" alt="">
+        <h4>La nueva esperanza de Halo</h4>
+        <p>Revelación de "Halo Campaign Evolved", un remake completo de Halo.</p>
+      </div>
+      <div class="video-card" onclick="openVideoModal('TGD5t9GNKL8')">
+        <img src="https://img.youtube.com/vi/TGD5t9GNKL8/hqdefault.jpg" alt="">
+        <h4>Nuevos Remackes</h4>
+        <p>Rumores sobre la reconstrucción total de las campañas de Halo 2 y Halo 3.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="music-player">
+    <h4>MUSICA</h4>
+    <audio id="bgMusic" src="assets/musica.m4a"></audio>
+    <div class="controls">
+      <button id="musicBtn" class="btn">🎵 Play</button>
+      <input type="range" id="progress" min="0" max="100" value="0">
+      <label for="musicVolume">Volumen</label>
+      <input type="range" id="musicVolume" min="0" max="1" step="0.01" value="0.5">
+    </div>
+  </div>
+
+  <div id="videoModal" class="video-modal" onclick="closeVideoModal(event)">
+    <div class="video-modal-content">
+      <iframe id="videoFrame" src="" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <section id="contact" class="container">
+    <h3>Contacto</h3>
+    <form id="contactForm" class="form">
+      <label>Nombre
+        <input type="text" name="name" id="name" required />
+      </label>
+      <label>Correo
+        <input type="email" name="email" id="email" required />
+      </label>
+      <label>Mensaje
+        <textarea name="message" id="message" rows="4" required></textarea>
+      </label>
+      
+      <div class="form-actions">
+        <button type="submit" class="btn">Enviar</button>
+        <button type="reset" class="btn btn-outline">Limpiar</button>
+      </div>
+      <div id="formResult"></div>
+    </form>
+  </section>
+
+  <section id="credits" class="container credits">
+    <h3>Acerca de AnimeLab</h3>
+    <p>Desarrollado por: Ángel Emmanuel</p>
+    <p>Grupo: 3°A</p>
+    <p>Asignatura: Implementación de Tecnologías de Desarrollo Web</p>
+    <p>Descripción: Proyecto educativo para practicar HTML, CSS y JS; incluye temas como modales, lightbox, temas claro/oscuro, navegación responsiva y multimedia.</p>
+  </section>
+</main>
+
+<footer class="site-footer container">
+  <p>HaloLab • Proyecto educativo — HTML • CSS • JavaScript</p>
+  <p id="year" class="small"></p>
+  <div class="social" style="margin-top:.5rem; display:flex; justify-content:center; gap:.5rem;">
+    <a href="https://youtube.com" target="_blank" class="icon yt">Y</a>
+    <a href="https://instagram.com" target="_blank" class="icon ig">I</a>
+    <a href="https://facebook.com" target="_blank" class="icon fb">F</a>
+  </div>
+</footer>
+
+<div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+  <img id="lightboxImg" alt="Vista ampliada" />
+</div>
+
+<div id="characterModal" class="char-modal" style="display:none;">
+  <div class="char-modal-content">
+    <button class="close-btn" onclick="closeCharModal()">✖</button>
+    <img id="charImg" class="char-img" src="" alt="Personaje Halo">
+    <h2 id="charName"></h2>
+    <p id="charDesc" class="char-desc"></p>
+    <p id="charExtra" class="char-extra"></p>
+  </div>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
